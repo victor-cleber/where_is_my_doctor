@@ -21,17 +21,21 @@ namespace where_is_my_doctor.Models
             @"data source=FABRCIOSANC36FC\SQLEXPRESS;
             initial catalog=BlogBDLivro; Integrated Security=SSPI";
         } */
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionStringBuilder = new SqliteConnectionStringBuilder {
-                 DataSource = "MyDb.db" };
+                 DataSource = "database.db" };
             var connectionString = connectionStringBuilder.ToString();
             var connection = new SqliteConnection(connectionString);
 
             optionsBuilder.UseSqlite(connection);
         }
-        public void EnsureCreated(){}
-        public void Eigraae(){}
+        public void EnsureCreated(){}      
 
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<City> Cities { get; set; }

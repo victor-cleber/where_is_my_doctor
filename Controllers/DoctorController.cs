@@ -14,7 +14,8 @@ namespace where_is_my_doctor.Controllers
 {
     public class DoctorController : Controller
     {
-        private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db;
+        
         private readonly ILogger<AuthorController> _logger;
 
         public DoctorController(ILogger<AuthorController> logger)
@@ -23,7 +24,7 @@ namespace where_is_my_doctor.Controllers
         }
 
 
-        public IActionResult Index()
+        public IActionResult Index(ApplicationDbContext db)
         {
            /*  Doctor objDoctor = new Doctor();
 

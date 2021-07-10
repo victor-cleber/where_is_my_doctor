@@ -20,11 +20,11 @@ namespace where_is_my_doctor
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            using (var db = new ApplicationDbContext())
+          /*   using (var db = new ApplicationDbContext())
             {
                 db.Database.EnsureCreated();
                 //db.Database.Migrate();
-            }
+            } */
         }
 
         public IConfiguration Configuration { get; }
