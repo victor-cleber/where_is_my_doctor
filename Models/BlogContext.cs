@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
+namespace blog.Models
+{
 public class BlogContext : DbContext
 {
     /* public BlogContext() : base("name=BlogContext")
@@ -15,4 +17,4 @@ public class BlogContext : DbContext
 
     public DbSet<Post> Posts { get; set; }
     public DbSet<Category> Categories { get; set; }
-}
+}}

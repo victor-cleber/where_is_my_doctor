@@ -1,0 +1,87 @@
+@model IEnumerable<where_is_my_doctor.Models.Doctor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Create new", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DoctorID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CRM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model=>model.District)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model=>model.HealthInsurance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HasMedicalClinic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WebSite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model=> model.CodSpecialty)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CRM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem =>item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.District)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HealthInsurance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasMedicalClinic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WebSite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodSpecialty)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new{/*id=item.PrimaryKey */}) |
+                @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey*/}) |
+                @Html.ActionLink("Delete", "Delete", new{/*id=item.PrimaryKey*/})
+            </td>
+        </tr>
+    }
+</table>

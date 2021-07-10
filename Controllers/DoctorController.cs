@@ -9,18 +9,23 @@ using where_is_my_doctor.Models;
 
 namespace where_is_my_doctor.Controllers
 {
-    public class PostController : Controller
+    public class DoctorController : Controller
     {
         private readonly ILogger<AuthorController> _logger;
 
-        public PostController(ILogger<AuthorController> logger)
+        public DoctorController(ILogger<AuthorController> logger)
         {
             _logger = logger;
         }
+private WhereIsMyDoctorContext db = new WhereIsMyDoctorContext();
 
         public IActionResult Index()
         {
-            return View();
+            /* Include loads the model and its relashionships
+            (Doctors + its Specialty + its city */
+            var doctors = db.Doctors.Include(m => m.City)
+            .Include(m=>m.specialty).ToList();
+            return View(doctors);
         }
     }
 }
