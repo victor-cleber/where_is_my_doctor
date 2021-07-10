@@ -2,8 +2,10 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+
 namespace where_is_my_doctor.Models
 {
+    //[Table("Doctors")]
     public class Doctor
     {
         [Key]
@@ -43,6 +45,9 @@ namespace where_is_my_doctor.Models
 
         [Required(ErrorMessage = "Inform the speciality")]
         public int CodSpecialty { get; set; }
+    
+        public virtual City City { get; set; }
+        public virtual Specialty Specialty { get; set; }
 
     }
 }

@@ -9,6 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+using where_is_my_doctor.Models;
+using Microsoft.EntityFrameworkCore;
+
+
 namespace where_is_my_doctor
 {
     public class Startup
@@ -16,6 +20,11 @@ namespace where_is_my_doctor
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            using (var db = new ApplicationDbContext())
+            {
+                db.Database.EnsureCreated();
+                //db.Database.Migrate();
+            }
         }
 
         public IConfiguration Configuration { get; }
@@ -23,7 +32,15 @@ namespace where_is_my_doctor
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews();        
+
+
+            var connection = Configuration["ConexaoSqlite:SqliteConnectionString"];
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlite(connection)
+            );
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
