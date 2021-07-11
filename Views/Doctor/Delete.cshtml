@@ -1,0 +1,80 @@
+@model where_is_my_doctor.Models.Doctor
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+<h3>Do you want to delete?</h3>
+<div>
+    <h4>Doctor</h4>
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="DoctorID"/>
+        <dt>
+            @Html.DisplayNameFor(model => model.DoctorID)
+        </dt>
+        <dd>
+            @Html.DisplayNameFor(model => model.DoctorID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CRM)
+        </dt>
+        <dd>
+            @Html.DisplayNameFor(model => model.CRM)
+        </dd>
+        <dd>
+            @Html.DisplayNameFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayNameFor(model => model.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayNameFor(model=>model.District)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model=>model.District)
+        </dt>
+        <dd>
+            @Html.DisplayNameFor(model=>model.HealthInsurance)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model=>model.HealthInsurance)
+        </dt>
+        <dd>
+            @Html.DisplayNameFor(model => model.HasMedicalClinic)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HasMedicalClinic)
+        </dt>
+        <dd>
+            @Html.DisplayNameFor(model => model.WebSite)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WebSite)
+        </dt>
+        <dd>
+            @Html.DisplayNameFor(model => model.CodCity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CodCity)
+        </dt>
+        <dd>
+            @Html.DisplayNameFor(model=> model.CodSpecialty)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model=> model.CodSpecialty)
+        </dt>
+    </dl>
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />|
+            <a asp-action="Index">Back</a>
+        </div>
+    </form>
+</div>>

@@ -14,18 +14,8 @@ using Microsoft.EntityFrameworkCore.Design;
 namespace where_is_my_doctor.Models
 {
     public class ApplicationDbContext : DbContext
-    {
-        /* public BlogContext() : base("name=BlogContext")
-        {
-            Database.Connection.ConnectionString =
-            @"data source=FABRCIOSANC36FC\SQLEXPRESS;
-            initial catalog=BlogBDLivro; Integrated Security=SSPI";
-        } */
-
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-        }
+    {     
+      
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionStringBuilder = new SqliteConnectionStringBuilder {

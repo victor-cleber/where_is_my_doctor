@@ -22,9 +22,6 @@ namespace where_is_my_doctor.Controllers
         {
             return View();
         }
-public IActionResult Countries(){
-    return View();
-}
         public IActionResult Privacy()
         {
             return View();
