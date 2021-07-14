@@ -1,82 +1,98 @@
 @model where_is_my_doctor.Models.Doctor
 
 @{
-    ViewData["Title"] = "Create";
+    ViewBag.Title = "Create";
 }
 
 <h2>New Doctor</h2>
 
-<form asp-action="Create">
-    <div class="form-horizontal">
-        <h4>Doctor</h4>
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="Name" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Address" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="District" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="District" class="form-control" />
-                <span asp-validation-for="District" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="WebSite" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="WebSite" class="form-control" />
-                <span asp-validation-for="WebSite" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="HealthInsurance" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="HealthInsurance" class="form-control" />
-                <span asp-validation-for="HealthInsurance" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="City" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="City" class="form-control" />
-                <span asp-validation-for="City" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="WebSite" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="WebSite" class="form-control" />
-                <span asp-validation-for="WebSite" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Specialty" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Specialty" class="form-control" />
-                <span asp-validation-for="Specialty" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-</form>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
 
+    <fieldset>
+    <legend>Medico</legend>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.CRM)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.CRM)
+        @Html.ValidationMessageFor(model => model.CRM)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Name)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Name)
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Address)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Address)
+        @Html.ValidationMessageFor(model => model.Address)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.District)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.District)
+        @Html.ValidationMessageFor(model => model.District)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Email)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Email)
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.HealthInsurance)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.HealthInsurance)
+        @Html.ValidationMessageFor(model =>
+        model.HealthInsurance)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.HasMedicalClinic)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.HasMedicalClinic)
+        @Html.ValidationMessageFor(model => model.HasMedicalClinic)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.WebSite)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.WebSite)
+        @Html.ValidationMessageFor(model => model.WebSite)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.CodCity)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownList("IDCidade", String.Empty)
+        @Html.ValidationMessageFor(model => model.CodCity)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.CodSpecialty)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownList("IDEspecialidade", String.Empty)
+        @Html.ValidationMessageFor(model => model.CodSpecialty)
+    </div>
+    <p>
+        <input type="submit" value="Create" />
+    </p>
+</fieldset>
+}
 <div>
-    <a asp-action="Index">Retornar</a>
+    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {

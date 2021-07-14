@@ -5,9 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+
 using where_is_my_doctor.Models;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 
 namespace where_is_my_doctor.Controllers
@@ -42,7 +43,10 @@ namespace where_is_my_doctor.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View("Create");
+            ViewBag.CodCity = new SelectList(_myDbContext.Cities, "CityId", "Name");
+            ViewBag.CodSpecialty = new SelectList(_myDbContext.Specialties, "SpecialtyId", "Name");
+
+            return View();
         }
 
         // POST: Doctor/Create        
@@ -52,76 +56,120 @@ namespace where_is_my_doctor.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 _myDbContext.Add(doctor);
                 await _myDbContext.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+
+            ViewBag.CodCity = new SelectList(_myDbContext.Cities, "CityId", "Name", doctor.CodCity);
+            ViewBag.CodSpecialty = new SelectList(_myDbContext.Specialties, "CodSpecialty", "Name", doctor.CodSpecialty);
+
             return View(doctor);
         }
 
         //GET: Doctor/Edit/5
-        public async Task<IActionResult> Edit(int? id){
-            if(id==null){
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
                 return NotFound();
             }
             var doctor = await _myDbContext.Doctors.SingleOrDefaultAsync(m => m.DoctorID == id);
-            if (doctor == null){
+            if (doctor == null)
+            {
                 return NotFound();
             }
+
+            ViewBag.CodCity = new SelectList(_myDbContext.Cities, "CodCity", "Name", doctor.CodCity);
+            ViewBag.CodSpecialty = new SelectList(_myDbContext.Specialties, "CodSpecialty", "Name", doctor.CodSpecialty);
+
             return View(doctor);
         }
 
         //POST: Doctor/Edit/6
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Doctor doctor){
-            if (id != doctor.DoctorID){
+        public async Task<IActionResult> Edit(int id, Doctor doctor)
+        {
+            if (id != doctor.DoctorID)
+            {
                 return NotFound();
             }
-            if(ModelState.IsValid){
-                try{
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    //_myDbContext.Entry(doctor).State = EntityState.Modified;
+
                     _myDbContext.Update(doctor);
                     await _myDbContext.SaveChangesAsync();
 
-                }catch(DbUpdateConcurrencyException){
-                    if(!DoctorExist(doctor.DoctorID)){
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!DoctorExist(doctor.DoctorID))
+                    {
                         return NotFound();
-                    }else{
+                    }
+                    else
+                    {
                         throw;
                     }
                 }
                 return RedirectToAction("Index");
             }
+
+            ViewBag.CodCity = new SelectList(_myDbContext.Cities, "CodCity", "Name", doctor.CodCity);
+            ViewBag.CodSpecialty = new SelectList(_myDbContext.Specialties, "CodSpecialty", "Name", doctor.CodSpecialty);
+
             return View(doctor);
 
         }
 
         //POST: Doctor/Delete/12
-        public async Task<IActionResult> Delete(int? id){
-            if (id== null){
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
                 return NotFound();
             }
 
             var doctor = await _myDbContext.Doctors
             .SingleOrDefaultAsync(m => m.DoctorID == id);
-            if(doctor == null){
+            if (doctor == null)
+            {
                 return NotFound();
             }
-            return View(doctor);
+            else
+            {
+                try
+                {
+
+                    _myDbContext.Doctors.Remove(doctor);
+                    _myDbContext.SaveChanges();
+                    //return Boolean.TrueString;
+                }
+                catch
+                {
+                    //return Boolean.FalseString;
+                }
+                return View(doctor);
+            }
         }
 
         //POST: Doctor/Delete/12
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id){
+        public async Task<IActionResult> Delete(int id)
+        {
             var doctor = await _myDbContext.Doctors.SingleOrDefaultAsync(m => m.DoctorID == id);
             _myDbContext.Doctors.Remove(doctor);
-            return RedirectToAction("Index");            
+            return RedirectToAction("Index");
 
         }
 
-        private bool DoctorExist(int id){
+        private bool DoctorExist(int id)
+        {
             return _myDbContext.Doctors.Any(e => e.DoctorID == id);
         }
 

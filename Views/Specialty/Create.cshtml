@@ -1,0 +1,26 @@
+@model where_is_my_doctor.Models.Specialty
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>New Specialty</h2>
+
+@using(Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+    <legend>Name</legend>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Name)
+    </div>
+<p>
+    <input type="submit" value="Create">
+</p>
+
+</fieldset>
+}
+<div>
+    @Html.ActionLink("Back to list", "Index")
+</div>
