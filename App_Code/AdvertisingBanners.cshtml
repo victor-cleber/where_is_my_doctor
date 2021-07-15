@@ -1,0 +1,20 @@
+@using where_is_my_doctor.Models;
+
+@{
+    void GetTheTwoMostRecentBanners()
+    {
+        var bd = new where_is_my_doctor.Models.ApplicationDbContext();
+        var banners = bd.AdvertisingBanners.OrderByDescending(b => b.BannerId).Take(2);
+
+        <div style="width:100%; text-align:left; border:1px solid #efefef; padding:10px; display:inline-block;"></div>
+
+        @foreach (var b in banners)
+        {
+            <div style="width:125px; height:125px; float:left; margin-right:10px;">
+                <a href="@b.Link">
+                    <img src="~/Uploads/Banners/@b.File" title="@b.Title" />
+                </a>
+            </div>
+        }
+    }
+}

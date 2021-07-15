@@ -28,6 +28,8 @@ namespace where_is_my_doctor.Models{
         public DbSet<User> Users { get; set; }
         public DbSet<Specialty> Specialties { get; set; }
 
+        public DbSet<Banner> AdvertisingBanners {get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Specialty>()  

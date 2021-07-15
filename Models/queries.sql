@@ -33,21 +33,21 @@ CREATE TABLE AdvertisingBanners
 (
 BannerID BIGINT IDENTITY NOT NULL,
 title VARCHAR(60) NOT NULL,
-banner VARCHAR(200) NOT NULL,
+file VARCHAR(200) NOT NULL,
 link VARCHAR(200) NULL,
 PRIMARY KEY(BannerID)
 );
 
 -- SQLite
 INSERT INTO AdvertisingBanners 
-(BannerID, Title, banner, link)
+(BannerID, title, file, link)
 VALUES
 (1, 'Campanha Conio', 
 'logo-conio-cademeumedico.png',
 'http://conio.com.br');
 
 INSERT INTO AdvertisingBanners
-(BannerId, title, banner, link) VALUES
+(BannerId, title, file, link) VALUES
 (2,'Campanha Casa do Código', 
 'banner-cdc-cademeumedico.png',
 'http://casadocodigo.com.br')

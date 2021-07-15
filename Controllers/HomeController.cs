@@ -20,6 +20,8 @@ namespace where_is_my_doctor.Controllers
 
         public IActionResult Index()
         {
+            @AdvertisingBanners.RetornaDoisBannersMaisRecentes();
+
             return View();
         }
         public IActionResult Privacy()
