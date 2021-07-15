@@ -1,0 +1,32 @@
+@model where_is_my_doctor.Models.Specialty
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+<h3>Do you want to delete?</h3>
+<div>
+    <h4>Doctor</h4>
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="SpecialtyId"/>
+        <dt>
+            @Html.DisplayNameFor(model => model.SpecialtyId)
+        </dt>
+        <dd>
+            @Html.DisplayNameFor(model => model.SpecialtyId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayNameFor(model => model.Name)
+        </dd>     
+    </dl>
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />|
+            <a asp-action="Index">Back</a>
+        </div>
+    </form>
+</div>

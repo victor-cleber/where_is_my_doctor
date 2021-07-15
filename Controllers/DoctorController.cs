@@ -49,7 +49,7 @@ namespace where_is_my_doctor.Controllers
             return View();
         }
 
-        // POST: Doctor/Create        
+        // POST: Doctor/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Doctor doctor)
@@ -74,7 +74,9 @@ namespace where_is_my_doctor.Controllers
             {
                 return NotFound();
             }
+
             var doctor = await _myDbContext.Doctors.SingleOrDefaultAsync(m => m.DoctorID == id);
+            
             if (doctor == null)
             {
                 return NotFound();
@@ -95,15 +97,15 @@ namespace where_is_my_doctor.Controllers
             {
                 return NotFound();
             }
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    //_myDbContext.Entry(doctor).State = EntityState.Modified;
-
-                    _myDbContext.Update(doctor);
+                    _myDbContext.Entry(doctor).State = EntityState.Modified;
+                    //_myDbContext.Update(doctor);
                     await _myDbContext.SaveChangesAsync();
-
+                    return RedirectToAction("Index");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -116,14 +118,13 @@ namespace where_is_my_doctor.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Index");
+                
             }
 
             ViewBag.CodCity = new SelectList(_myDbContext.Cities, "CodCity", "Name", doctor.CodCity);
             ViewBag.CodSpecialty = new SelectList(_myDbContext.Specialties, "CodSpecialty", "Name", doctor.CodSpecialty);
 
             return View(doctor);
-
         }
 
         //POST: Doctor/Delete/12
@@ -145,8 +146,8 @@ namespace where_is_my_doctor.Controllers
                 try
                 {
 
-                    _myDbContext.Doctors.Remove(doctor);
-                    _myDbContext.SaveChanges();
+                    //_myDbContext.Doctors.Remove(doctor);
+                    //_myDbContext.SaveChanges();
                     //return Boolean.TrueString;
                 }
                 catch
@@ -164,6 +165,7 @@ namespace where_is_my_doctor.Controllers
         {
             var doctor = await _myDbContext.Doctors.SingleOrDefaultAsync(m => m.DoctorID == id);
             _myDbContext.Doctors.Remove(doctor);
+            _myDbContext.SaveChanges();
             return RedirectToAction("Index");
 
         }

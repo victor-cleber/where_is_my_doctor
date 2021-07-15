@@ -1,0 +1,36 @@
+@model IEnumerable<where_is_my_doctor.Models.Specialty>
+
+@{
+    ViewData["Title"] = "Specialties";
+}
+
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Create new", "Create", "Specialty")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SpecialtyId)
+        </th>        
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpecialtyId)
+            </td>          
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>            
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.SpecialtyId }) |                
+                @* @Html.ActionLink("Details", "Details", new { id=item.SpecialtyId }) |*@
+                @Html.ActionLink("Delete", "Delete", new{ id=item.SpecialtyId })
+            </td>
+        </tr>
+    }
+</table>

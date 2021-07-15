@@ -11,9 +11,14 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     <fieldset>
-    <legend>Name</legend>
+    <legend>Create a new Specialty</legend>
+    
     <div class="editor-label">
         @Html.LabelFor(model => model.Name)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Name)
+        @Html.ValidationMessageFor(model => model.Name)
     </div>
 <p>
     <input type="submit" value="Create">

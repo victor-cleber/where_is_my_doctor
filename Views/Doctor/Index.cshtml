@@ -78,10 +78,9 @@
                 @Html.DisplayFor(modelItem => item.CodSpecialty)
             </td>
             <td>
-                
-                Edit : @Html.ActionLink("Edit", "Edit", new { id=item.DoctorID }) |                
-                @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey*/}) |
-                @Html.ActionLink("Delete", "Delete", new{/*id=item.PrimaryKey*/})
+                @Html.ActionLink("Edit", "Edit", new { id=item.DoctorID }) |                
+                @* @Html.ActionLink("Details", "Details", new {id=item.DoctorID }) |*@
+                @Html.ActionLink("Delete", "Delete", new{ id=item.DoctorID })
             </td>
         </tr>
     }

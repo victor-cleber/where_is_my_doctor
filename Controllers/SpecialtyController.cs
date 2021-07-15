@@ -24,7 +24,6 @@ namespace where_is_my_doctor.Controllers
             _myDbContext = context;
         }
 
-
         // GET: Specialty
         public IActionResult Index(ApplicationDbContext db)
         {
@@ -41,7 +40,7 @@ namespace where_is_my_doctor.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-                        return View();
+            return View();
         }
 
         // POST: Specialty/Create        
@@ -51,11 +50,11 @@ namespace where_is_my_doctor.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 _myDbContext.Add(specialty);
                 await _myDbContext.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+
             return View(specialty);
         }
 
@@ -64,10 +63,13 @@ namespace where_is_my_doctor.Controllers
             if(id==null){
                 return NotFound();
             }
+            
             var specialty = await _myDbContext.Specialties.SingleOrDefaultAsync(m => m.SpecialtyId == id);
+            
             if (specialty == null){
                 return NotFound();
             }
+
             return View(specialty);
         }
 
@@ -93,7 +95,6 @@ namespace where_is_my_doctor.Controllers
                 return RedirectToAction("Index");
             }
             return View(specialty);
-
         }
 
         //POST: Doctor/Delete/12
@@ -107,6 +108,7 @@ namespace where_is_my_doctor.Controllers
             if(specialty == null){
                 return NotFound();
             }
+
             return View(specialty);
         }
 
@@ -116,13 +118,11 @@ namespace where_is_my_doctor.Controllers
         public async Task<IActionResult> Delete(int id){
             var specialty = await _myDbContext.Specialties.SingleOrDefaultAsync(m => m.SpecialtyId == id);
             _myDbContext.Specialties.Remove(specialty);
-            return RedirectToAction("Index");            
-
+            return RedirectToAction("Index");
         }
 
         private bool SpecialtyExist(int id){
             return _myDbContext.Specialties.Any(e => e.SpecialtyId == id);
         }
-
     }
 }
