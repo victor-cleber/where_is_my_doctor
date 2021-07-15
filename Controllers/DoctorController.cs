@@ -61,7 +61,7 @@ namespace where_is_my_doctor.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CodCity = new SelectList(_myDbContext.Cities, "CityId", "Name", doctor.CodCity);
+            ViewBag.CodCity = new SelectList(_myDbContext.Cities, "CodCity", "Name", doctor.CodCity);
             ViewBag.CodSpecialty = new SelectList(_myDbContext.Specialties, "CodSpecialty", "Name", doctor.CodSpecialty);
 
             return View(doctor);
