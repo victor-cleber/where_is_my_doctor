@@ -18,9 +18,14 @@ namespace where_is_my_doctor.Controllers
             _logger = logger;
         }
 
+        public IActionResult Login()
+        {
+            ViewBag.Title = "You are welcome!!";
+            return View();
+        }
         public IActionResult Index()
         {
-            @AdvertisingBanners.RetornaDoisBannersMaisRecentes();
+            //@AdvertisingBanners.RetornaDoisBannersMaisRecentes();
 
             return View();
         }

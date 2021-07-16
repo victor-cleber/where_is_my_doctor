@@ -33,7 +33,7 @@ namespace where_is_my_doctor.Controllers
             (Doctors + its Specialty + its city */
             using (var dbContext = new ApplicationDbContext())
             {
-                var doctors = db.Doctors.Include(m => m.City)
+                var doctors = dbContext.Doctors.Include(m => m.City)
                 .Include(m => m.Specialty).ToList();
                 return View(doctors);
             }
