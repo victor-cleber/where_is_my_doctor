@@ -1,7 +1,7 @@
 @using where_is_my_doctor.Models;
-
+@* 
 @{
-    void GetTheTwoMostRecentBanners()
+   void GetTheTwoMostRecentBanners()
     {
         var bd = new where_is_my_doctor.Models.ApplicationDbContext();
         var banners = bd.AdvertisingBanners.OrderByDescending(b => b.BannerId).Take(2);
@@ -17,4 +17,4 @@
             </div>
         }
     }
-}
+} *@

@@ -1,3 +1,6 @@
+add-miggration cookie
+update-database
+
 -- SQLite
 INSERT INTO Specialties (Name)
 VALUES 

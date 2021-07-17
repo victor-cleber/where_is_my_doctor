@@ -35,12 +35,7 @@ namespace where_is_my_doctor
         {
             services.AddControllersWithViews();
 
-     
-
-            services.AddEntityFrameworkSqlite()        
-        .AddDbContext<ApplicationDbContext>();
-
-
+            services.AddEntityFrameworkSqlite().AddDbContext<ApplicationDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
